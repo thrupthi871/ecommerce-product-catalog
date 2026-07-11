@@ -4,7 +4,7 @@ A responsive E-Commerce Product Catalog built using HTML, CSS, and JavaScript.
 
 ## 🚀 Live Demo
 
-🌐 https://graceful-parfait-405c2a.netlify.app/
+🌐 https://thrupthi-product-catalog.netlify.app/
 
 ## ✨ Features
 
