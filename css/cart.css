@@ -1,0 +1,195 @@
+/* Shopping Cart Page Styles */
+.cart-layout {
+  max-width: 1200px;
+  margin: calc(var(--header-height) + 40px) auto 80px;
+  padding: 0 24px;
+}
+.cart-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 40px;
+}
+/* Two Column Grid */
+.cart-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+/* Cart Items Container */
+.cart-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/* Cart Item Card */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.cart-item:hover {
+  border-color: var(--text-muted);
+  box-shadow: var(--shadow-md);
+}
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+}
+.cart-item-img img {
+  max-height: 100%;
+  object-fit: contain;
+}
+.cart-item-details {
+  flex: 1;
+  min-width: 0; /* Prevents overflow of title */
+}
+.cart-item-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.cart-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-item-price {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+/* Item Action Section */
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.cart-item-total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  width: 100px;
+  text-align: right;
+}
+/* Delete Button */
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.remove-btn:hover {
+  background: rgba(244, 63, 94, 0.1);
+  color: var(--accent);
+}
+/* Order Summary Box */
+.summary-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+}
+.summary-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.summary-row.total {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+.summary-row.total .total-value {
+  color: var(--primary);
+}
+.summary-card .btn-primary {
+  width: 100%;
+  height: 50px;
+  font-size: 1rem;
+  margin-top: 30px;
+}
+/* Empty State Styling */
+.cart-empty-state,
+.cart-order-complete-state {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.order-complete-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #16a34a;
+  margin-bottom: 16px;
+}
+.order-complete-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0 auto 32px;
+}
+.empty-cart-icon {
+  margin-bottom: 24px;
+  color: var(--text-muted);
+}
+.empty-cart-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.empty-cart-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0 auto 32px;
+}

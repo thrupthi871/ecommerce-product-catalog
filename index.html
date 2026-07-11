@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShopEase - Discover premium electronics, apparel, jewelry and accessories with our curated catalog. High quality products with fast shipping.">
+  <title>ShopEase | Modern E-Commerce Catalog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Home Page Specific Styles */
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      margin-top: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(250, 250, 250, 0) 90%),
+                  radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, rgba(250, 250, 250, 0) 90%);
+      padding: 40px 24px;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      text-align: center;
+      z-index: 2;
+    }
+    
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+    
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    
+    /* Category grid section */
+    .section {
+      padding: 100px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    
+    .category-card {
+      position: relative;
+      height: 320px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      color: white;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.2) 70%);
+      z-index: 1;
+      transition: var(--transition);
+    }
+    
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .category-card:hover::before {
+      background: linear-gradient(to top, rgba(99, 102, 241, 0.85) 0%, rgba(15, 23, 42, 0.3) 100%);
+    }
+    
+    /* Different category colors/gradients */
+    .cat-electronics {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+    }
+    .cat-jewelery {
+      background: linear-gradient(135deg, #78350f, #92400e);
+    }
+    .cat-men {
+      background: linear-gradient(135deg, #0f172a, #334155);
+    }
+    .cat-women {
+      background: linear-gradient(135deg, #881337, #be123c);
+    }
+    
+    .category-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .category-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    
+    .category-cta {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    
+    .category-card:hover .category-cta {
+      opacity: 1;
+      gap: 12px;
+    }
+
+    /* Dynamic Showcase Section */
+    .trending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    /* Skeleton Loading UI */
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .skeleton-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .skeleton-img {
+      height: 200px;
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .skeleton-text {
+      height: 20px;
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .skeleton-text.short {
+      width: 60%;
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Product card specific to Home Page */
+    .prod-card {
+      background: var(--surface-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+
+    .prod-img-container {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    .prod-img-container img {
+      max-height: 100%;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+
+    .prod-card:hover .prod-img-container img {
+      transform: scale(1.05);
+    }
+
+    .prod-cat {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .prod-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 2.8rem;
+    }
+
+    .prod-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .prod-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .prod-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 4px 8px;
+      border-radius: 100px;
+    }
+
+    .prod-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .prod-actions .btn {
+      padding: 10px;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        ShopEase
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="products.html?category=all" class="nav-link">Categories</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-icon-btn" aria-label="View Shopping Cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="navMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content animate-fade-in-up">
+      <span class="hero-tag">Premium Collection 2026</span>
+      <h1 class="hero-title">Experience Modern Shopping with <span>ShopEase</span></h1>
+      <p class="hero-desc">Discover high-end electronics, hand-crafted jewelry, and fashionable apparel. Curated styles matched with seamless integrations.</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn btn-primary">Shop The Collection</a>
+        <a href="#categories" class="btn btn-secondary">Browse Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section" id="categories" style="background: white; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="section-header">
+      <h2 class="section-title">Explore Our Categories</h2>
+      <p class="section-subtitle">Find exact item categories tailored specifically to your shopping needs</p>
+    </div>
+
+    <div class="category-grid">
+      <!-- Electronics -->
+      <div class="category-card cat-electronics" onclick="window.location.href='products.html?category=electronics'">
+        <div class="category-content">
+          <h3 class="category-name">Electronics</h3>
+          <div class="category-cta">
+            Shop Gadgets 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Jewelery -->
+      <div class="category-card cat-jewelery" onclick="window.location.href='products.html?category=jewelery'">
+        <div class="category-content">
+          <h3 class="category-name">Jewelry</h3>
+          <div class="category-cta">
+            Explore Gold & Gems
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Men's Clothing -->
+      <div class="category-card cat-men" onclick="window.location.href='products.html?category=men%27s clothing'">
+        <div class="category-content">
+          <h3 class="category-name">Men's Clothing</h3>
+          <div class="category-cta">
+            View Apparel
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Women's Clothing -->
+      <div class="category-card cat-women" onclick="window.location.href='products.html?category=women%27s clothing'">
+        <div class="category-content">
+          <h3 class="category-name">Women's Clothing</h3>
+          <div class="category-cta">
+            Explore Fashion
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Products Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">New Arrivals</h2>
+      <p class="section-subtitle">Take a look at some of our fresh products straight from the catalog</p>
+    </div>
+
+    <!-- Skeleton Loader -->
+    <div class="skeleton-grid" id="trendingSkeleton">
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+      </div>
+    </div>
+
+    <!-- Grid content (populated dynamically) -->
+    <div class="trending-grid" id="trendingGrid" style="display: none;"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ShopEase</a>
+        <p>Your premium e-commerce portal for high-quality items. Powered by raw APIs and modern styling.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">F</a>
+          <a href="#" class="social-link" aria-label="Twitter">T</a>
+          <a href="#" class="social-link" aria-label="Instagram">I</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">L</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="products.html" class="footer-link">Products</a></li>
+          <li><a href="cart.html" class="footer-link">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">FAQ</a></li>
+          <li><a href="#" class="footer-link">Help Center</a></li>
+          <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          <li><a href="#" class="footer-link">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4 class="footer-heading">Newsletter</h4>
+        <p>Subscribe to receive news, alerts, and promotions from ShopEase.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+          <input type="email" placeholder="Your email address" class="newsletter-input" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ShopEase. All rights reserved.</p>
+      <p>Designed and built with modern CSS & Vanilla JS.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="css/js/storage.js"></script>
+  <script src="css/js/api.js"></script>
+  <script src="css/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const skeleton = document.getElementById('trendingSkeleton');
+      const grid = document.getElementById('trendingGrid');
+
+      try {
+        const products = await getAllProducts();
+        const featured = products.slice(0, 4);
+        
+        grid.innerHTML = featured.map(prod => `
+          <div class="prod-card animate-fade-in-up">
+            <div class="prod-img-container">
+              <img src="${prod.image}" alt="${prod.title}" loading="lazy">
+            </div>
+            <div class="prod-cat">${prod.category}</div>
+            <h3 class="prod-title">${prod.title}</h3>
+            <div class="prod-meta">
+              <span class="prod-price">$${prod.price.toFixed(2)}</span>
+              <span class="prod-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="margin-right: 2px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                ${prod.rating.rate}
+              </span>
+            </div>
+            <div class="prod-actions">
+              <a href="product.html?id=${prod.id}" class="btn btn-secondary">Details</a>
+              <button class="btn btn-primary add-to-cart-btn" data-id="${prod.id}">Add to Cart</button>
+            </div>
+          </div>
+        `).join('');
+
+        grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = parseInt(e.target.getAttribute('data-id'));
+            const product = featured.find(p => p.id === id);
+            if (product) {
+              addToCart(product, 1);
+              showToast(`${product.title.substring(0, 20)}... added to cart!`, 'success');
+            }
+          });
+        });
+
+        skeleton.style.display = 'none';
+        grid.style.display = 'grid';
+
+      } catch (err) {
+        console.error('Failed to load arrivals:', err);
+        skeleton.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--accent); font-weight: 600;">
+            Failed to load new arrivals from the catalog. Please check your internet connection and refresh.
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

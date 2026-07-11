@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart | ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">...</header>
+
+  <main class="cart-layout">
+    <h1 class="cart-title">Your Cart</h1>
+    <section class="cart-grid" id="cartGrid">
+      <div class="cart-items-container" id="cartItemsList"></div>
+      <div class="summary-card">
+        <h2 class="summary-title">Order Summary</h2>
+        <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+        <div class="summary-row"><span>Estimated Shipping</span><span id="summaryShipping">Calculated</span></div>
+        <div class="summary-row"><span>Estimated Tax (8%)</span><span id="summaryTax">$0.00</span></div>
+        <div class="summary-row total"><span>Grand Total</span><span id="summaryTotal" class="total-value">$0.00</span></div>
+        <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+      </div>
+    </section>
+
+    <section class="cart-empty-state" id="cartEmptyState" style="display: none;">
+      <h2 class="empty-cart-title">Your Shopping Cart is Empty</h2>
+      <a href="products.html" class="btn btn-primary">Discover Products</a>
+    </section>
+
+    <section class="cart-order-complete-state" id="orderCompleteState" style="display: none;">
+      <h2 class="order-complete-title">Order completed!!</h2>
+      <p class="order-complete-desc">Thank you for your purchase. Your order has been placed successfully.</p>
+      <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+    </section>
+  </main>
+
+  <script src="css/js/storage.js"></script>
+  <script src="css/js/app.js"></script>
+  <script src="css/js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">...</header>
+
+  <main class="detail-layout">
+    <nav class="breadcrumb" id="breadcrumb" style="display: none;">
+      <a href="index.html">Home</a><span class="breadcrumb-separator">/</span>
+      <a href="products.html">Products</a><span class="breadcrumb-separator">/</span>
+      <a href="products.html" id="breadcrumbCategory">Category</a><span class="breadcrumb-separator">/</span>
+      <span id="breadcrumbTitle" style="color: var(--text-primary);">Product Name</span>
+    </nav>
+
+    <!-- Skeleton -->
+    <section class="detail-skeleton" id="detailSkeleton">...</section>
+
+    <!-- Details Content -->
+    <section class="detail-grid" id="detailContent" style="display: none;">
+      <div class="gallery-container">
+        <img id="productImage" src="" alt="Product Image">
+      </div>
+      <div class="info-container">
+        <span class="info-category" id="productCategory">Category</span>
+        <h1 class="info-title" id="productTitle">Product Name</h1>
+        <div class="info-rating-row">
+          <div class="stars-wrapper" id="starsWrapper"></div>
+          <span class="reviews-count" id="reviewsCount"></span>
+        </div>
+        <div class="info-price" id="productPrice">$0.00</div>
+        <p class="info-description" id="productDescription"></p>
+        <div class="purchase-section">
+          <div class="quantity-widget">
+            <button class="qty-btn" id="qtyMinusBtn">&minus;</button>
+            <input type="number" id="qtyInput" class="qty-input" value="1" min="1" max="99">
+            <button class="qty-btn" id="qtyPlusBtn">&plus;</button>
+          </div>
+          <button class="btn btn-primary" id="addToCartBtn">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-section" id="relatedSection" style="display: none;">
+      <h2 class="related-title">You May Also Like</h2>
+      <div class="related-grid" id="relatedGrid"></div>
+    </section>
+
+    <div id="errorState" class="status-container" style="display: none; padding: 2rem; text-align: center;">
+      <h3 class="status-title">Oops! Something went wrong</h3>
+      <p id="errorMessage" class="status-desc">Unable to load this product. Please try again or return to the products list.</p>
+      <a href="products.html" class="btn btn-primary">Back to Products</a>
+    </div>
+    <div id="debugInfo" style="display: none; margin-top: 16px; font-size: 0.95rem; color: var(--text-muted);"></div>
+  </main>
+
+  <script src="css/js/storage.js"></script>
+  <script src="css/js/api.js"></script>
+  <script src="css/js/app.js"></script>
+  <script src="css/js/product.js"></script>
+</body>
+</html>
